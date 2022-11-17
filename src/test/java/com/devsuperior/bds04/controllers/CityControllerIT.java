@@ -116,8 +116,8 @@ public class CityControllerIT {
 					.accept(MediaType.APPLICATION_JSON));
 		
 		result.andExpect(status().isUnprocessableEntity());
-		result.andExpect(jsonPath("$.errors[0].fieldName").value("name"));
-		result.andExpect(jsonPath("$.errors[0].message").value("Campo requerido"));
+		result.andExpect(jsonPath("$.erros[0].fieldName").value("name"));
+		result.andExpect(jsonPath("$.erros[0].message").value("Campo requerido"));
 	}
 
 	@Test
@@ -126,6 +126,7 @@ public class CityControllerIT {
 		ResultActions result =
 				mockMvc.perform(get("/cities")
 					.contentType(MediaType.APPLICATION_JSON));
+				
 
 		result.andExpect(status().isOk());
 		result.andExpect(jsonPath("$[0].name").value("Belo Horizonte"));
